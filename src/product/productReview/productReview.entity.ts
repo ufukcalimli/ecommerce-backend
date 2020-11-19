@@ -1,3 +1,4 @@
+import { IsNumber, IsString, Length } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Product } from '../product.entity';
 
@@ -6,15 +7,22 @@ export class ProductReview {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @IsString()
+  @Length(3)
   @Column()
   name: string;
 
+  @IsNumber()
   @Column()
   stars: number;
 
+  @IsString()
+  @Length(3)
   @Column()
   title: string;
 
+  @IsString()
+  @Length(3)
   @Column()
   text: string;
 
