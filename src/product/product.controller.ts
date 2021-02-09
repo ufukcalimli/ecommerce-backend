@@ -6,17 +6,23 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
+import { Pagination } from '../models/pagination';
 import { Product } from './product.entity';
 import { ProductService } from './product.service';
 
-@Controller('api/v1/products')
+@Controller('api/v1/brands/:brandSlug/products')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
   @Get()
-  async getAllProducts(): Promise<Product[]> {
-    return await this.productService.getProducts();
+  async getAllProducts(
+    @Param('brandSlug') brandSlug: string,
+    @Query('limit') limit = '9',
+    @Query('page') page = '1',
+  ): Promise<Pagination<Product>> {
+    return await this.productService.getProducts(brandSlug, +limit, +page);
   }
 
   @Get(':slug')
@@ -25,8 +31,11 @@ export class ProductController {
   }
 
   @Post()
-  async createProduct(@Body() product: Product): Promise<Product> {
-    return await this.productService.createProduct(product);
+  async createProduct(
+    @Param('brandSlug') brandSlug: string,
+    @Body() product: Product,
+  ): Promise<Product> {
+    return await this.productService.createProduct(brandSlug, product);
   }
 
   @Put(':slug')

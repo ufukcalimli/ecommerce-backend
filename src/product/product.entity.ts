@@ -5,8 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Brand } from 'src/brand/brand.entity';
-import { ProductPrice } from 'src/models/price.entity';
+import { Brand } from '../brand/brand.entity';
+import { ProductPrice } from '../models/price.entity';
 import { ProductImage } from './productImage/productImage.entity';
 import { ProductReview } from './productReview/productReview.entity';
 import { IsBoolean, IsString, Length } from 'class-validator';
@@ -29,8 +29,6 @@ export class Product extends ProductPrice {
   @Column()
   description: string;
 
-  @IsString()
-  @Length(3)
   @Column()
   brandSlug: string;
 

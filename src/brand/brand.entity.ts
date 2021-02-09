@@ -1,5 +1,5 @@
 import { IsString, Length } from 'class-validator';
-import { Product } from 'src/product/product.entity';
+import { Product } from '../product/product.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

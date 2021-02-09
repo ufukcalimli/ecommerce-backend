@@ -18,7 +18,7 @@ export class BrandService {
     }
   }
 
-  async getBrand(slug: string): Promise<Brand> {
+  async getBrand(slug: string): Promise<Brand | undefined> {
     try {
       return await this.brandRepository.findOne({ slug });
     } catch (error) {

@@ -26,7 +26,6 @@ export class BrandController {
 
   @Post()
   async createBrand(@Body() brand: Brand): Promise<Brand> {
-    console.log({ brand });
     return await this.brandService.createBrand(brand);
   }
 
